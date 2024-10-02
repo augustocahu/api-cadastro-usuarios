@@ -1,11 +1,12 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 
 const prisma = new PrismaClient()
 
-const app = express()
+const app = express() // dependencia que permitiu realizar as chamadas rest.
 app.use(express.json())
-
+app.use(cors()) //utilizado para permitir que qualquer endereço consulte a api 
 
 app.post('/usuarios', async (req, res) => {
     await prisma.user.create({
